@@ -3,6 +3,10 @@
 function renderElement(element) {
   const {type, props, children} = element;
 
+  if(typeof(type) === 'function' ) {
+    return renderElement(type(props));
+  }
+
   if(typeof(type) === 'string') {
     const domElement = document.createElement(type);
 
@@ -25,15 +29,25 @@ function createElement(type, props, ...children) {
   return {type, props, children};
 }
 
+
 // Runtime
 const userInfo = createElement('div', null,
     createElement('h1', {id: 5}, 'Nir Kaufman'),
     createElement('h2', null, 'Nir Kaufman'),
     createElement('div', null,
-        createElement('p', null, 'Street name'),
-        createElement('p', null, '123456'),
+      createElement(Label, {text: 'streetName', value: '25'}),
+      createElement(Label, {text: 'streetName2', value: '252'}),
+      createElement(Label, {text: 'streetName3', value: '252'}),
     ),
 )
+
+// component (in React) = function that returns element.
+// when called - React provide the "props" object as argument
+function Label({text}) {
+  return createElement('li', null, text);
+}
+
+console.log(userInfo);
 
 document.body.appendChild(renderElement(userInfo));
 
