@@ -35,6 +35,7 @@ const userInfo = createElement('div', null,
     createElement('h1', {id: 5}, 'Nir Kaufman'),
     createElement('h2', null, 'Nir Kaufman'),
     createElement('div', null,
+      // ['one', 'two', 'three'] -> (<ul> -> <li />)
       createElement(Label, {text: 'streetName', value: '25'}),
       createElement(Label, {text: 'streetName2', value: '252'}),
       createElement(Label, {text: 'streetName3', value: '252'}),
@@ -47,7 +48,10 @@ function Label({text}) {
   return createElement('li', null, text);
 }
 
-console.log(userInfo);
+// beginners:
+// 1. create component (Button) for button -> label
+// 2. create component (Title) for h1 -> text
+
 
 document.body.appendChild(renderElement(userInfo));
 
