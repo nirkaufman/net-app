@@ -15,7 +15,6 @@ function renderElement(element) {
       }
     })
 
-
     return domElement;
   }
 
@@ -36,6 +35,5 @@ const userInfo = createElement('div', null,
     ),
 )
 
-
-console.log(renderElement(userInfo));
+document.body.appendChild(renderElement(userInfo));
 
